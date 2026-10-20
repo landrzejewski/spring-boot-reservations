@@ -1,6 +1,11 @@
 package pl.training.hotel.adapters.persistence.mongo;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
+import pl.training.common.PageSpec;
+import pl.training.common.ResultPage;
 import pl.training.hotel.domain.*;
 
 import java.time.ZoneOffset;
@@ -33,6 +38,10 @@ public class MongoRoomRepositoryMapper {
         );
     }
 
+    public PageRequest toDocument(final PageSpec pageSpec) {
+        return PageRequest.of(pageSpec.index(), pageSpec.size(), Sort.by("number"));
+    }
+
     public Room toDomain(final RoomDocument roomDocument) {
         var pricePerNight = new Money(roomDocument.pricePerNight(), Currency.getInstance(roomDocument.currencyCode()));
         var room = new Room(
@@ -54,6 +63,14 @@ public class MongoRoomRepositoryMapper {
                 new StayPeriod(reservationDocument.checkIn(), reservationDocument.checkOut()),
                 reservationDocument.guests(),
                 new Money(reservationDocument.price(), pricePerNight.currency())
+        );
+    }
+
+    public ResultPage<Room> toDomain(final Page<RoomDocument> page) {
+        return new ResultPage<>(
+                page.stream().map(this::toDomain).toList(),
+                new PageSpec(page.getNumber(), page.getSize()),
+                page.getTotalPages()
         );
     }
 

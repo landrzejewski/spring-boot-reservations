@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ae723105-496b-490f-9cbc-7600e718386a" name="Changes" comment="update">
+      <change afterPath="$PROJECT_DIR$/src/main/java/pl/training/hotel/adapters/persistence/jpa/JpaRoomRepositoryAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/pl/training/hotel/adapters/persistence/jpa/JpaRoomRepositoryMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/pl/training/hotel/adapters/persistence/jpa/MoneyEmbeddable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/pl/training/hotel/adapters/persistence/jpa/ReservationEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/pl/training/hotel/adapters/persistence/jpa/RoomEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/pl/training/hotel/adapters/persistence/jpa/RoomOccupancy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/pl/training/hotel/adapters/persistence/mongo/MongoRoomRepositoryAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/pl/training/hotel/adapters/persistence/mongo/MongoRoomRepositoryMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/pl/training/hotel/adapters/persistence/mongo/ReservationDocument.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/pl/training/hotel/adapters/persistence/mongo/RoomDocument.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/training/hotel/adapters/HashMapRoomRepository.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="03-Spring-Boot-AOP" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "landrzejewski"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/landrzejewski/spring-boot-reservations.git",
+    "accountId": "1b37fe50-2402-4e39-ab44-356eff4c0490"
+  }
+}]]></component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 1,
+  "fromUser": false
+}]]></component>
+  <component name="ProjectId" id="3Kx2tnboUioS8ITtHly43iTvXtl" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "dev",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/lukas/Downloads/spring-boot-hotel-reservations/src/main/java/pl/training/hotel/adapters/persistence/jpa",
+    "nodejs_package_manager_path": "npm"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java/pl/training/hotel/adapters/persistence/jpa" />
+      <recent name="$PROJECT_DIR$/src/main/java/pl/training/hotel/adapters/persistence/mongo" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="hotel-reservations" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="pl.training.Application" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-a203e0a19954-intellij.indexing.shared.core-IU-262.10968.63" />
+        <option value="bundled-js-predefined-d6986cc7102b-4abd2a77f808-JavaScript-IU-262.10968.63" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ae723105-496b-490f-9cbc-7600e718386a" name="Changes" comment="update" />
+      <created>1792485115384</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1792485115384</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
