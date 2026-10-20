@@ -1,0 +1,120 @@
+< {%
+    const day = 24 * 60 * 60 * 1000;
+    const date = offset => new Date(Date.now() + offset * day).toISOString().substring(0, 10);
+    client.global.set('in1', date(1));
+    client.global.set('out1', date(3));
+    client.global.set('in2', date(2));
+    client.global.set('out2', date(4));
+    client.global.set('out30', date(30));
+%}
+POST http://localhost:8080/api/rooms
+Accept: application/json
+Content-Type: application/json
+
+{
+  "type": "DOUBLE",
+  "pricePerNight": 300,
+  "currencyCode": "PLN"
+}
+
+> {%
+    client.global.set('number', response.body.number);
+%}
+
+###
+
+POST http://localhost:8080/api/rooms
+Accept: application/json
+Content-Type: application/json
+
+{
+  "type": "SUITE",
+  "pricePerNight": 900,
+  "currencyCode": "PLN"
+}
+
+###
+
+POST http://localhost:8080/api/rooms/{{number}}/reservations
+Accept: application/json
+Content-Type: application/json
+
+{
+  "checkIn": "{{in1}}",
+  "checkOut": "{{out1}}",
+  "guests": 2
+}
+
+### Room not available (409)
+
+POST http://localhost:8080/api/rooms/{{number}}/reservations
+Accept: application/json
+Content-Type: application/json
+
+{
+  "checkIn": "{{in2}}",
+  "checkOut": "{{out2}}",
+  "guests": 1
+}
+
+### Capacity exceeded (422), Polish messages
+
+POST http://localhost:8080/api/rooms/{{number}}/reservations
+Accept: application/json
+Accept-Language: pl-PL
+Content-Type: application/json
+
+{
+  "checkIn": "{{out1}}",
+  "checkOut": "{{out2}}",
+  "guests": 3
+}
+
+### Stay policy violation (422)
+
+POST http://localhost:8080/api/rooms/{{number}}/reservations
+Accept: application/json
+Content-Type: application/json
+
+{
+  "checkIn": "{{out1}}",
+  "checkOut": "{{out30}}",
+  "guests": 1
+}
+
+### Validation errors (400)
+
+POST http://localhost:8080/api/rooms/{{number}}/reservations
+Accept: application/json
+Content-Type: application/json
+
+{
+  "checkIn": "2020-01-10",
+  "checkOut": "2020-01-05",
+  "guests": 0
+}
+
+###
+
+GET http://localhost:8080/api/rooms/{{number}}
+Accept: application/json
+
+### Room not found (404)
+
+GET http://localhost:8080/api/rooms/555
+Accept: application/json
+
+###
+
+GET http://localhost:8080/api/rooms?page=0&size=5
+Accept: application/json
+
+### Invalid page size (400)
+
+GET http://localhost:8080/api/rooms?size=100
+Accept: application/json
+
+###
+
+GET http://localhost:8080/actuator/info
+Accept: application/json

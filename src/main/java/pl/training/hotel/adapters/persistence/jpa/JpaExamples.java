@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 import static org.springframework.data.domain.Sort.Direction.DESC;
 import static pl.training.hotel.domain.RoomType.DOUBLE;
 
-@Profile("!mongo")
+@Profile("examples & !mongo")
 @Order(2)
 @Component
 public class JpaExamples implements ApplicationRunner {

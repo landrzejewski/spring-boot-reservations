@@ -16,6 +16,8 @@ spring:
     password: admin
     database: hotel
     authentication-database: admin
+  messages:
+    fallback-to-system-locale: false
 logging:
   level:
     org.springframework: info
@@ -25,3 +27,8 @@ hotel:
     suite-start-number: 900
   stay-policy:
     max-nights: 14
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info

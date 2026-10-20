@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 
 import static org.springframework.data.mongodb.core.query.Criteria.where;
 
-@Profile("mongo")
+@Profile("examples & mongo")
 @Order(2)
 @Component
 public class MongoExamples implements ApplicationRunner {
