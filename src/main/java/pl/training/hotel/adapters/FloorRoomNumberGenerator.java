@@ -1,8 +1,13 @@
 package pl.training.hotel.adapters;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Component;
 import pl.training.hotel.application.RoomNumberGenerator;
 import pl.training.hotel.domain.RoomNumber;
 
+@Primary
+@Component
 public class FloorRoomNumberGenerator implements RoomNumberGenerator {
 
     private static final int MAX_ROOMS_PER_FLOOR = 99;
@@ -10,6 +15,11 @@ public class FloorRoomNumberGenerator implements RoomNumberGenerator {
     private final int roomsPerFloor;
 
     private int counter;
+
+    @Autowired
+    public FloorRoomNumberGenerator(final RoomNumberProperties properties) {
+        this(properties.roomsPerFloor());
+    }
 
     public FloorRoomNumberGenerator(final int roomsPerFloor) {
         if (roomsPerFloor < 1 || roomsPerFloor > MAX_ROOMS_PER_FLOOR) {

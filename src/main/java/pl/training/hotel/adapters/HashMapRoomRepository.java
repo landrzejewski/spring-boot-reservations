@@ -1,5 +1,8 @@
 package pl.training.hotel.adapters;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
+import org.springframework.stereotype.Repository;
 import pl.training.common.PageSpec;
 import pl.training.common.ResultPage;
 import pl.training.hotel.application.RoomRepository;
@@ -10,10 +13,24 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.logging.Logger;
 
+@Repository
 public class HashMapRoomRepository implements RoomRepository {
 
+    private static final Logger LOGGER = Logger.getLogger(HashMapRoomRepository.class.getName());
+
     private final Map<RoomNumber, Room> data = new HashMap<>();
+
+    @PostConstruct
+    public void init() {
+        LOGGER.info("In-memory room repository initialized");
+    }
+
+    @PreDestroy
+    public synchronized void destroy() {
+        LOGGER.info("In-memory room repository closed, %d room(s) discarded".formatted(data.size()));
+    }
 
     @Override
     public synchronized Room save(final Room room) {

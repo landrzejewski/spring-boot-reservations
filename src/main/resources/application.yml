@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: hotel
+logging:
+  level:
+    org.springframework: info
+hotel:
+  room-numbers:
+    rooms-per-floor: 10
+    suite-start-number: 900

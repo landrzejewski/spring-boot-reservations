@@ -1,20 +1,23 @@
 package pl.training.hotel.application;
 
+import org.springframework.stereotype.Service;
 import pl.training.hotel.domain.*;
 
+import java.util.List;
 import java.util.function.Consumer;
 
+@Service
 public class AddReservationUseCase {
 
     private final DateTimeProvider dateTimeProvider;
-    private final ReservationEventPublisher reservationEventPublisher;
+    private final List<ReservationEventPublisher> reservationEventPublishers;
     private final RoomRepository roomRepository;
 
     public AddReservationUseCase(final DateTimeProvider dateTimeProvider,
-                                 final ReservationEventPublisher reservationEventPublisher,
+                                 final List<ReservationEventPublisher> reservationEventPublishers,
                                  final RoomRepository roomRepository) {
         this.dateTimeProvider = dateTimeProvider;
-        this.reservationEventPublisher = reservationEventPublisher;
+        this.reservationEventPublishers = reservationEventPublishers;
         this.roomRepository = roomRepository;
     }
 
@@ -42,7 +45,7 @@ public class AddReservationUseCase {
             var reservationId = event.reservation().id().value().toString();
             var guests = event.reservation().guests();
             var applicationEvent = new ReservationAdded(roomNumber, reservationId, guests);
-            reservationEventPublisher.publish(applicationEvent);
+            reservationEventPublishers.forEach(publisher -> publisher.publish(applicationEvent));
         };
     }
 
