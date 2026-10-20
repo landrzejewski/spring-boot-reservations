@@ -1,0 +1,7 @@
+logging:
+  level:
+    pl.training: debug
+hotel:
+  room-numbers:
+    rooms-per-floor: 20
+    suite-start-number: 9000

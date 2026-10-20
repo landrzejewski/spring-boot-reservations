@@ -1,5 +1,6 @@
 package pl.training;
 
+import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import pl.training.common.PageSpec;
@@ -30,11 +31,11 @@ public class HotelDemo implements CommandLineRunner {
     private final AddReservationUseCase addReservationUseCase;
     private final GetRoomsUseCase getRoomsUseCase;
     private final GetRoomUseCase getRoomUseCase;
-    private final InMemoryReservationEventPublisher reservationHistory;
+    private final ObjectProvider<InMemoryReservationEventPublisher> reservationHistory;
 
     public HotelDemo(AddRoomUseCase addRoomUseCase, AddReservationUseCase addReservationUseCase,
                      GetRoomsUseCase getRoomsUseCase, GetRoomUseCase getRoomUseCase,
-                     InMemoryReservationEventPublisher reservationHistory) {
+                     ObjectProvider<InMemoryReservationEventPublisher> reservationHistory) {
         this.addRoomUseCase = addRoomUseCase;
         this.addReservationUseCase = addReservationUseCase;
         this.getRoomsUseCase = getRoomsUseCase;
@@ -65,7 +66,7 @@ public class HotelDemo implements CommandLineRunner {
                 .getReservations()
                 .forEach(reservation -> LOGGER.info(reservation.toString()));
 
-        LOGGER.info("Reservation history: " + reservationHistory.getPublishedEvents());
+        reservationHistory.ifAvailable(history -> LOGGER.info("Reservation history: " + history.getPublishedEvents()));
     }
 
 }

@@ -1,12 +1,10 @@
 package pl.training.hotel.application;
 
-import org.springframework.stereotype.Service;
 import pl.training.hotel.domain.*;
 
 import java.util.List;
 import java.util.function.Consumer;
 
-@Service
 public class AddReservationUseCase {
 
     private final DateTimeProvider dateTimeProvider;

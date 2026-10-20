@@ -1,10 +1,8 @@
 package pl.training.hotel.application;
 
-import org.springframework.stereotype.Service;
 import pl.training.hotel.domain.Room;
 import pl.training.hotel.domain.RoomNumber;
 
-@Service
 public class GetRoomUseCase {
 
     private final RoomRepository roomRepository;

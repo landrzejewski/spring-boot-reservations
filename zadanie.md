@@ -1,26 +1,32 @@
-# Etap 02 – Spring Boot: wstrzykiwanie zależności (konfiguracja Java)
+# Etap 03 – Spring AOP
 
-Punkt wyjścia: ten branch (`02-Spring-Boot-DI-annotation`). Rozwiązanie: branch `02-Spring-Boot-DI-java-config`.
+Punkt wyjścia: ten branch (`02-Spring-Boot-DI-java-config`). Rozwiązanie: branch `03-Spring-Boot-AOP`.
 
 ## Zadanie
-1. Usuń wszystkie adnotacje Springa z klas w `application` i `adapters` (poza `RoomNumberProperties`) – klasy hotelu mają być czystą Javą.
-2. Zdefiniuj wszystkie beany w `pl.training.hotel.HotelConfiguration` (`@Configuration`):
-   * `RoomNumberProperties` zarejestruj przez `@EnableConfigurationProperties` (zamiast `@ConfigurationPropertiesScan`)
-   * repozytorium – metody cyklu życia wskaż przez `@Bean(initMethod = "init", destroyMethod = "destroy")`
-   * generatory – dwa beany typu `RoomNumberGenerator` (`standardRoomNumberGenerator`, `suiteRoomNumberGenerator`) tworzone na podstawie `RoomNumberProperties`
-   * przypadki użycia – zależności przekazuj, wywołując inne metody `@Bean` (np. `roomRepository()`);
-     sprawdź, że mimo wielokrotnego wywołania powstaje jedna instancja repozytorium
-   * publishery zdarzeń – kolejność przez `@Order` na metodach `@Bean`;
-     `InMemoryReservationEventPublisher` ma istnieć tylko w profilu `dev` (`@Profile("dev")`)
-3. `HotelDemo` pobiera historię zdarzeń przez `ObjectProvider<InMemoryReservationEventPublisher>` – bez profilu `dev` beana nie ma i nic nie jest wypisywane.
-4. Dodaj `application-dev.yml` z inną numeracją pokoi (np. 20 pokoi na piętro, apartamenty od 9000) i poziomem logowania `debug`.
+1. Dodaj zależność `spring-boot-starter-aspectj`.
+2. **Audyt** (`pl.training.common.audit`) – zastępuje `AddReservationAuditProxy` z etapu 01:
+   * adnotacja `@Audited("NAZWA_AKCJI")`, rekord `AuditEntry` (czas, akcja, wynik `SUCCESS`/`FAILURE`, szczegóły), bean `AuditLog` przechowujący wpisy
+   * `AuditAspect` (`@Order(1)`):
+     * nazwany pointcut `applicationLayer()` – `execution(public * pl.training.hotel.application..*(..))`
+     * `@AfterReturning` – połączenie `applicationLayer() && @annotation(audited)`, wiązanie adnotacji i zwróconej wartości (`returning`)
+     * `@AfterThrowing` – wiązanie wyjątku (`throwing`)
+   * oznacz `AddRoomUseCase.handle` (`ADD_ROOM`) i `AddReservationUseCase.handle` (`ADD_RESERVATION`)
+3. **Polityka pobytu** (`pl.training.hotel.adapters`):
+   * `StayPolicyProperties` (`hotel.stay-policy.max-nights: 14`)
+   * `StayPolicyAspect` – `@Before` na `AddReservationUseCase.handle` z wiązaniem argumentów `args(roomNumber, stayPeriod, guests)`;
+     zbyt długi pobyt → `StayPolicyViolationException`
+   * aspekt zarejestruj jako zwykły `@Bean` w `HotelConfiguration` (klasa ma tylko `@Aspect`, bez `@Component`)
+4. **Ograniczanie liczby wywołań** (`pl.training.common.aop`):
+   * `@Throttled(permits, periodInSeconds)` + `ThrottlingAspect` (`@Around`) – przesuwne okno czasowe per metoda, po przekroczeniu limitu `ThrottlingException`
+   * oznacz `GetRoomsUseCase.handle` – `@Throttled(permits = 3, periodInSeconds = 1)`
+5. W `HotelDemo` pokaż: rezerwację kolidującą, zbyt długi pobyt, przekroczenie limitu wywołań i liczbę wpisów audytu.
 
 ## Do sprawdzenia
-* Co się stanie, gdy dodasz `@Configuration(proxyBeanMethods = false)`?
-* Uruchom aplikację z profilem `dev` i bez niego – porównaj numery apartamentów i historię zdarzeń.
+* Czy próba zbyt długiego pobytu trafia do audytu? Od czego to zależy (kolejność aspektów)?
+* Dlaczego aspekt nie zadziała dla metody prywatnej ani dla wywołania `this.handle(...)` wewnątrz tej samej klasy?
+* Zmień pointcut `applicationLayer()` tak, aby obejmował tylko klasy, których nazwa kończy się na `UseCase`.
 
 ## Uruchomienie
 ```
 mvn spring-boot:run
-mvn spring-boot:run -Dspring-boot.run.profiles=dev
 ```

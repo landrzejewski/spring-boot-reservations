@@ -1,15 +1,11 @@
 package pl.training.hotel.adapters;
 
-import org.springframework.core.annotation.Order;
-import org.springframework.stereotype.Component;
 import pl.training.hotel.application.ReservationAdded;
 import pl.training.hotel.application.ReservationEventPublisher;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Order(2)
-@Component
 public final class InMemoryReservationEventPublisher implements ReservationEventPublisher {
 
     private final List<ReservationAdded> publishedEvents = new ArrayList<>();
