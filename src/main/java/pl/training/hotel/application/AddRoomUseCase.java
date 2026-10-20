@@ -1,5 +1,6 @@
 package pl.training.hotel.application;
 
+import org.springframework.transaction.annotation.Transactional;
 import pl.training.common.audit.Audited;
 import pl.training.hotel.domain.Money;
 import pl.training.hotel.domain.Room;
@@ -9,6 +10,7 @@ import pl.training.hotel.domain.RoomType;
 
 import static pl.training.hotel.domain.RoomType.SUITE;
 
+@Transactional
 public class AddRoomUseCase {
 
     private final RoomNumberGenerator standardRoomNumberGenerator;

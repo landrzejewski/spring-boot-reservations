@@ -1,11 +1,13 @@
 package pl.training.hotel.application;
 
+import org.springframework.transaction.annotation.Transactional;
 import pl.training.common.audit.Audited;
 import pl.training.hotel.domain.*;
 
 import java.util.List;
 import java.util.function.Consumer;
 
+@Transactional
 public class AddReservationUseCase {
 
     private final DateTimeProvider dateTimeProvider;

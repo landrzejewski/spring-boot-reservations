@@ -1,6 +1,21 @@
 spring:
   application:
     name: hotel
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+  datasource:
+    url: jdbc:postgresql://localhost:5432/hotel
+    username: admin
+    password: admin
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 6
+  mongodb:
+    username: admin
+    password: admin
+    database: hotel
+    authentication-database: admin
 logging:
   level:
     org.springframework: info

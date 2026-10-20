@@ -2,6 +2,7 @@ package pl.training;
 
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import pl.training.common.PageSpec;
 import pl.training.common.aop.ThrottlingException;
@@ -24,6 +25,7 @@ import static pl.training.hotel.domain.RoomType.DOUBLE;
 import static pl.training.hotel.domain.RoomType.SINGLE;
 import static pl.training.hotel.domain.RoomType.SUITE;
 
+@Order(1)
 @Component
 public class HotelDemo implements CommandLineRunner {
 
@@ -51,6 +53,7 @@ public class HotelDemo implements CommandLineRunner {
     @Override
     public void run(String... args) {
         var roomNumber = addRoomUseCase.handle(DOUBLE, new Money(300.0, CURRENCY)).getNumber();
+        addRoomUseCase.handle(DOUBLE, new Money(350.0, CURRENCY));
         addRoomUseCase.handle(SINGLE, new Money(200.0, CURRENCY));
         addRoomUseCase.handle(SUITE, new Money(800.0, CURRENCY));
 

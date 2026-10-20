@@ -5,19 +5,16 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.core.annotation.Order;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import pl.training.hotel.adapters.*;
 import pl.training.hotel.application.*;
 
 import java.util.List;
 
+@EnableJpaAuditing
 @EnableConfigurationProperties({RoomNumberProperties.class, StayPolicyProperties.class})
 @Configuration
 public class HotelConfiguration {
-
-    @Bean(initMethod = "init", destroyMethod = "destroy")
-    public HashMapRoomRepository roomRepository() {
-        return new HashMapRoomRepository();
-    }
 
     @Bean
     public DateTimeProvider dateTimeProvider() {
@@ -53,23 +50,24 @@ public class HotelConfiguration {
     }
 
     @Bean
-    public AddRoomUseCase addRoomUseCase(RoomNumberProperties properties) {
-        return new AddRoomUseCase(standardRoomNumberGenerator(properties), suiteRoomNumberGenerator(properties), roomRepository());
+    public AddRoomUseCase addRoomUseCase(RoomNumberProperties properties, RoomRepository roomRepository) {
+        return new AddRoomUseCase(standardRoomNumberGenerator(properties), suiteRoomNumberGenerator(properties), roomRepository);
     }
 
     @Bean
-    public AddReservationUseCase addReservationUseCase(List<ReservationEventPublisher> reservationEventPublishers) {
-        return new AddReservationUseCase(dateTimeProvider(), reservationEventPublishers, roomRepository());
+    public AddReservationUseCase addReservationUseCase(List<ReservationEventPublisher> reservationEventPublishers,
+                                                       RoomRepository roomRepository) {
+        return new AddReservationUseCase(dateTimeProvider(), reservationEventPublishers, roomRepository);
     }
 
     @Bean
-    public GetRoomsUseCase getRoomsUseCase() {
-        return new GetRoomsUseCase(roomRepository());
+    public GetRoomsUseCase getRoomsUseCase(RoomRepository roomRepository) {
+        return new GetRoomsUseCase(roomRepository);
     }
 
     @Bean
-    public GetRoomUseCase getRoomUseCase() {
-        return new GetRoomUseCase(roomRepository());
+    public GetRoomUseCase getRoomUseCase(RoomRepository roomRepository) {
+        return new GetRoomUseCase(roomRepository);
     }
 
 }

@@ -1,10 +1,12 @@
 package pl.training.hotel.application;
 
+import org.springframework.transaction.annotation.Transactional;
 import pl.training.common.PageSpec;
 import pl.training.common.ResultPage;
 import pl.training.common.aop.Throttled;
 import pl.training.hotel.domain.Room;
 
+@Transactional(readOnly = true)
 public class GetRoomsUseCase {
 
     private final RoomRepository roomRepository;
