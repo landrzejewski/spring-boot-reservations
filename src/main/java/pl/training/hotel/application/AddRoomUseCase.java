@@ -1,5 +1,6 @@
 package pl.training.hotel.application;
 
+import pl.training.common.audit.Audited;
 import pl.training.hotel.domain.Money;
 import pl.training.hotel.domain.Room;
 import pl.training.hotel.domain.RoomId;
@@ -22,6 +23,7 @@ public class AddRoomUseCase {
         this.roomRepository = roomRepository;
     }
 
+    @Audited("ADD_ROOM")
     public Room handle(final RoomType type, final Money pricePerNight) {
         var room = createRoom(type, pricePerNight);
         return roomRepository.save(room);

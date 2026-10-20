@@ -1,5 +1,6 @@
 package pl.training.hotel.application;
 
+import pl.training.common.audit.Audited;
 import pl.training.hotel.domain.*;
 
 import java.util.List;
@@ -19,6 +20,7 @@ public class AddReservationUseCase {
         this.roomRepository = roomRepository;
     }
 
+    @Audited("ADD_RESERVATION")
     public ReservationId handle(final RoomNumber roomNumber, final StayPeriod stayPeriod, final int guests) {
         var room = findRoom(roomNumber);
         var reservation = createReservation(room, stayPeriod, guests);

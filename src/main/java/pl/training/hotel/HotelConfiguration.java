@@ -10,7 +10,7 @@ import pl.training.hotel.application.*;
 
 import java.util.List;
 
-@EnableConfigurationProperties(RoomNumberProperties.class)
+@EnableConfigurationProperties({RoomNumberProperties.class, StayPolicyProperties.class})
 @Configuration
 public class HotelConfiguration {
 
@@ -45,6 +45,11 @@ public class HotelConfiguration {
     @Bean
     public InMemoryReservationEventPublisher inMemoryReservationEventPublisher() {
         return new InMemoryReservationEventPublisher();
+    }
+
+    @Bean
+    public StayPolicyAspect stayPolicyAspect(StayPolicyProperties properties) {
+        return new StayPolicyAspect(properties);
     }
 
     @Bean

@@ -8,3 +8,5 @@ hotel:
   room-numbers:
     rooms-per-floor: 10
     suite-start-number: 900
+  stay-policy:
+    max-nights: 14

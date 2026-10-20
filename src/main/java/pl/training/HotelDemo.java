@@ -4,7 +4,10 @@ import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import pl.training.common.PageSpec;
+import pl.training.common.aop.ThrottlingException;
+import pl.training.common.audit.AuditLog;
 import pl.training.hotel.adapters.InMemoryReservationEventPublisher;
+import pl.training.hotel.adapters.StayPolicyViolationException;
 import pl.training.hotel.application.AddReservationUseCase;
 import pl.training.hotel.application.AddRoomUseCase;
 import pl.training.hotel.application.GetRoomUseCase;
@@ -32,15 +35,17 @@ public class HotelDemo implements CommandLineRunner {
     private final GetRoomsUseCase getRoomsUseCase;
     private final GetRoomUseCase getRoomUseCase;
     private final ObjectProvider<InMemoryReservationEventPublisher> reservationHistory;
+    private final AuditLog auditLog;
 
     public HotelDemo(AddRoomUseCase addRoomUseCase, AddReservationUseCase addReservationUseCase,
                      GetRoomsUseCase getRoomsUseCase, GetRoomUseCase getRoomUseCase,
-                     ObjectProvider<InMemoryReservationEventPublisher> reservationHistory) {
+                     ObjectProvider<InMemoryReservationEventPublisher> reservationHistory, AuditLog auditLog) {
         this.addRoomUseCase = addRoomUseCase;
         this.addReservationUseCase = addReservationUseCase;
         this.getRoomsUseCase = getRoomsUseCase;
         this.getRoomUseCase = getRoomUseCase;
         this.reservationHistory = reservationHistory;
+        this.auditLog = auditLog;
     }
 
     @Override
@@ -57,16 +62,29 @@ public class HotelDemo implements CommandLineRunner {
         } catch (RoomNotAvailableException exception) {
             LOGGER.info("Room %s is not available in the requested period".formatted(roomNumber.value()));
         }
+        try {
+            addReservationUseCase.handle(roomNumber, new StayPeriod(today.plusDays(10), today.plusDays(40)), 2);
+        } catch (StayPolicyViolationException exception) {
+            LOGGER.info(exception.getMessage());
+        }
 
         getRoomsUseCase.handle(new PageSpec(0, 10))
                 .content()
                 .forEach(room -> LOGGER.info(room.toString()));
+        try {
+            for (int attempt = 0; attempt < 3; attempt++) {
+                getRoomsUseCase.handle(new PageSpec(0, 10));
+            }
+        } catch (ThrottlingException exception) {
+            LOGGER.info(exception.getMessage());
+        }
 
         getRoomUseCase.handle(roomNumber)
                 .getReservations()
                 .forEach(reservation -> LOGGER.info(reservation.toString()));
 
         reservationHistory.ifAvailable(history -> LOGGER.info("Reservation history: " + history.getPublishedEvents()));
+        LOGGER.info("Audit log contains %d entries".formatted(auditLog.getEntries().size()));
     }
 
 }
