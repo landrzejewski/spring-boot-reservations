@@ -10,6 +10,7 @@ import pl.training.hotel.domain.RoomNumber;
 
 import static org.springframework.http.HttpStatus.CREATED;
 
+@Tag(name = "Reservations")
 @RequestMapping("api/rooms/{number}/reservations")
 @RestController
 class RoomReservationsRestController {
@@ -20,11 +21,11 @@ class RoomReservationsRestController {
         this.addReservationUseCase = addReservationUseCase;
     }
 
-
+    @Operation(summary = "Reserve a room")
     @ResponseStatus(CREATED)
     @PostMapping
-    AddReservationResponse addReservation(@PathVariable String number,
-                                          @RequestBody AddReservationRequest request) {
+    AddReservationResponse addReservation(@PathVariable @Pattern(regexp = "\\d{3,5}") String number,
+                                          @Valid @RequestBody AddReservationRequest request) {
         var reservationId = addReservationUseCase.handle(new RoomNumber(number), request.stayPeriod(), request.guests());
         return AddReservationResponse.from(reservationId);
     }
