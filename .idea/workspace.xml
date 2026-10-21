@@ -5,12 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7f55d560-626c-46db-b06d-e9351a42fad4" name="Changes" comment="update">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pl/training/SecurityConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/import.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/2529dcd7-da6e-498b-9956-3ff58bd8f1d0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/2529dcd7-da6e-498b-9956-3ff58bd8f1d0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/2529dcd7-da6e-498b-9956-3ff58bd8f1d0/storage_v2/_src_/database/hotel.tMHtBQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/2529dcd7-da6e-498b-9956-3ff58bd8f1d0/storage_v2/_src_/database/hotel.tMHtBQ/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client.http" beforeDir="false" afterPath="$PROJECT_DIR$/client.http" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,18 +29,24 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="05-Spring-Web-MVC" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "HTTP Request.client | Room not found (404).executor": "Run",
+    "Maven.hotel-reservations [clean].executor": "Run",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
     "RequestMappingsPanelWidth1": "75",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Spring Boot.Application.executor": "Run",
-    "git-widget-placeholder": "05-Spring-Web-MVC"
+    "git-widget-placeholder": "06-Security"
   },
   "keyToStringList": {
     "DatabaseDriversLRU": [
@@ -101,14 +106,20 @@
           <option name="totalLines" value="2479" />
           <option name="info" value="update" />
         </TimePoint>
+        <TimePoint>
+          <option name="timestamp" value="1792576742054" />
+          <option name="linesCode" value="1305" />
+          <option name="totalLines" value="2507" />
+          <option name="info" value="update" />
+        </TimePoint>
       </list>
     </option>
     <option name="genericTimePoints">
       <list>
         <TimePoint>
-          <option name="timestamp" value="1792569044625" />
-          <option name="linesCode" value="1293" />
-          <option name="totalLines" value="2479" />
+          <option name="timestamp" value="1792576742054" />
+          <option name="linesCode" value="1305" />
+          <option name="totalLines" value="2507" />
           <option name="info" value="21 paź 2026" />
         </TimePoint>
       </list>

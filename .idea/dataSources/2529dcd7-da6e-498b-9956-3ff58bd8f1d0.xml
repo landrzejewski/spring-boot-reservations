@@ -3,7 +3,7 @@
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.55">
     <root id="1">
       <DateStyle>mdy</DateStyle>
-      <IntrospectionStateNumber>851</IntrospectionStateNumber>
+      <IntrospectionStateNumber>962</IntrospectionStateNumber>
       <ServerVersion>18.6</ServerVersion>
       <StartupTime>1792575949</StartupTime>
       <TimeZones>true ACDT
@@ -802,7 +802,7 @@ true posixrules
 13327||10|C|G
 13327||-9223372036854775808|U|G
 13327||10|U|G</Grants>
-      <IntrospectionStateNumber>851</IntrospectionStateNumber>
+      <IntrospectionStateNumber>962</IntrospectionStateNumber>
       <ObjectId>16384</ObjectId>
       <OwnerName>admin</OwnerName>
     </database>
@@ -4323,210 +4323,15 @@ true posixrules
       <AutoIntrospectionLevel>3</AutoIntrospectionLevel>
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <LastIntrospectionL1Xid>851</LastIntrospectionL1Xid>
-      <LastIntrospectionL2Xid>851</LastIntrospectionL2Xid>
-      <LastIntrospectionL3Xid>851</LastIntrospectionL3Xid>
+      <LastIntrospectionL1Xid>962</LastIntrospectionL1Xid>
+      <LastIntrospectionL2Xid>962</LastIntrospectionL2Xid>
+      <LastIntrospectionL3Xid>962</LastIntrospectionL3Xid>
       <LastIntrospectionLevel>3</LastIntrospectionLevel>
-      <LastIntrospectionLocalTimestamp>2026-10-21.09:56:37</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2026-10-21.10:09:28</LastIntrospectionLocalTimestamp>
       <LastIntrospectionVersion>260210</LastIntrospectionVersion>
       <ObjectId>2200</ObjectId>
       <StateNumber>546</StateNumber>
       <OwnerName>pg_database_owner</OwnerName>
     </schema>
-    <table id="273" parent="272" name="reservations">
-      <DetailsLevel>2</DetailsLevel>
-      <ObjectId>16597</ObjectId>
-      <StateNumber>846</StateNumber>
-      <AccessMethodId>2</AccessMethodId>
-      <OwnerName>admin</OwnerName>
-    </table>
-    <table id="274" parent="272" name="rooms">
-      <DetailsLevel>2</DetailsLevel>
-      <ObjectId>16607</ObjectId>
-      <StateNumber>846</StateNumber>
-      <AccessMethodId>2</AccessMethodId>
-      <OwnerName>admin</OwnerName>
-    </table>
-    <column id="275" parent="273" name="check_in">
-      <Position>1</Position>
-      <StateNumber>844</StateNumber>
-      <StoredType>date|0s</StoredType>
-      <TypeId>1082</TypeId>
-    </column>
-    <column id="276" parent="273" name="check_out">
-      <Position>2</Position>
-      <StateNumber>844</StateNumber>
-      <StoredType>date|0s</StoredType>
-      <TypeId>1082</TypeId>
-    </column>
-    <column id="277" parent="273" name="guests">
-      <NotNull>1</NotNull>
-      <Position>3</Position>
-      <StateNumber>844</StateNumber>
-      <StoredType>integer|0s</StoredType>
-      <TypeId>23</TypeId>
-    </column>
-    <column id="278" parent="273" name="price_amount">
-      <Position>4</Position>
-      <StateNumber>844</StateNumber>
-      <StoredType>numeric(38,2 digit)|0s</StoredType>
-      <TypeId>1700</TypeId>
-    </column>
-    <column id="279" parent="273" name="placed_at">
-      <Position>5</Position>
-      <StateNumber>844</StateNumber>
-      <StoredType>timestamp(6) with time zone|0s</StoredType>
-      <TypeId>1184</TypeId>
-    </column>
-    <column id="280" parent="273" name="id">
-      <NotNull>1</NotNull>
-      <Position>6</Position>
-      <StateNumber>844</StateNumber>
-      <StoredType>varchar(255)|0s</StoredType>
-      <TypeId>1043</TypeId>
-    </column>
-    <column id="281" parent="273" name="price_currency">
-      <Position>7</Position>
-      <StateNumber>844</StateNumber>
-      <StoredType>varchar(255)|0s</StoredType>
-      <TypeId>1043</TypeId>
-    </column>
-    <column id="282" parent="273" name="room_id">
-      <NotNull>1</NotNull>
-      <Position>8</Position>
-      <StateNumber>844</StateNumber>
-      <StoredType>varchar(255)|0s</StoredType>
-      <TypeId>1043</TypeId>
-    </column>
-    <foreign-key id="283" parent="273" name="fkljt6q1tp205b0h26eiegc5mx6">
-      <ColNames>room_id</ColNames>
-      <ObjectId>16619</ObjectId>
-      <StateNumber>846</StateNumber>
-      <RefKeyColPositions>7</RefKeyColPositions>
-      <RefTableId>16607</RefTableId>
-    </foreign-key>
-    <index id="284" parent="273" name="reservations_pkey">
-      <ColNames>id</ColNames>
-      <NameSurrogate>1</NameSurrogate>
-      <ObjectId>16605</ObjectId>
-      <Primary>1</Primary>
-      <StateNumber>844</StateNumber>
-      <Unique>1</Unique>
-      <AccessMethodId>403</AccessMethodId>
-      <CollationNames>default</CollationNames>
-      <CollationIds>100</CollationIds>
-      <CollationParentNames>pg_catalog</CollationParentNames>
-    </index>
-    <key id="285" parent="273" name="reservations_pkey">
-      <NameSurrogate>1</NameSurrogate>
-      <ObjectId>16606</ObjectId>
-      <Primary>1</Primary>
-      <StateNumber>844</StateNumber>
-      <UnderlyingIndexId>16605</UnderlyingIndexId>
-    </key>
-    <check id="286" parent="274" name="rooms_type_check">
-      <ColNames>type</ColNames>
-      <ObjectId>16610</ObjectId>
-      <Predicate>(type)::text = ANY ((ARRAY[&apos;SINGLE&apos;::character varying, &apos;DOUBLE&apos;::character varying, &apos;SUITE&apos;::character varying])::text[])</Predicate>
-      <StateNumber>845</StateNumber>
-    </check>
-    <column id="287" parent="274" name="price_amount">
-      <Position>1</Position>
-      <StateNumber>845</StateNumber>
-      <StoredType>numeric(38,2 digit)|0s</StoredType>
-      <TypeId>1700</TypeId>
-    </column>
-    <column id="288" parent="274" name="revenue_amount">
-      <Position>2</Position>
-      <StateNumber>845</StateNumber>
-      <StoredType>numeric(38,2 digit)|0s</StoredType>
-      <TypeId>1700</TypeId>
-    </column>
-    <column id="289" parent="274" name="number">
-      <NotNull>1</NotNull>
-      <Position>3</Position>
-      <StateNumber>845</StateNumber>
-      <StoredType>varchar(5)|0s</StoredType>
-      <TypeId>1043</TypeId>
-    </column>
-    <column id="290" parent="274" name="created_at">
-      <Position>4</Position>
-      <StateNumber>845</StateNumber>
-      <StoredType>timestamp(6) with time zone|0s</StoredType>
-      <TypeId>1184</TypeId>
-    </column>
-    <column id="291" parent="274" name="last_modified_at">
-      <Position>5</Position>
-      <StateNumber>845</StateNumber>
-      <StoredType>timestamp(6) with time zone|0s</StoredType>
-      <TypeId>1184</TypeId>
-    </column>
-    <column id="292" parent="274" name="version">
-      <Position>6</Position>
-      <StateNumber>845</StateNumber>
-      <StoredType>bigint|0s</StoredType>
-      <TypeId>20</TypeId>
-    </column>
-    <column id="293" parent="274" name="id">
-      <NotNull>1</NotNull>
-      <Position>7</Position>
-      <StateNumber>845</StateNumber>
-      <StoredType>varchar(255)|0s</StoredType>
-      <TypeId>1043</TypeId>
-    </column>
-    <column id="294" parent="274" name="price_currency">
-      <Position>8</Position>
-      <StateNumber>845</StateNumber>
-      <StoredType>varchar(255)|0s</StoredType>
-      <TypeId>1043</TypeId>
-    </column>
-    <column id="295" parent="274" name="revenue_currency">
-      <Position>9</Position>
-      <StateNumber>845</StateNumber>
-      <StoredType>varchar(255)|0s</StoredType>
-      <TypeId>1043</TypeId>
-    </column>
-    <column id="296" parent="274" name="type">
-      <Position>10</Position>
-      <StateNumber>845</StateNumber>
-      <StoredType>varchar(255)|0s</StoredType>
-      <TypeId>1043</TypeId>
-    </column>
-    <index id="297" parent="274" name="rooms_number_key">
-      <ColNames>number</ColNames>
-      <NameSurrogate>1</NameSurrogate>
-      <ObjectId>16617</ObjectId>
-      <StateNumber>845</StateNumber>
-      <Unique>1</Unique>
-      <AccessMethodId>403</AccessMethodId>
-      <CollationNames>default</CollationNames>
-      <CollationIds>100</CollationIds>
-      <CollationParentNames>pg_catalog</CollationParentNames>
-    </index>
-    <index id="298" parent="274" name="rooms_pkey">
-      <ColNames>id</ColNames>
-      <NameSurrogate>1</NameSurrogate>
-      <ObjectId>16615</ObjectId>
-      <Primary>1</Primary>
-      <StateNumber>845</StateNumber>
-      <Unique>1</Unique>
-      <AccessMethodId>403</AccessMethodId>
-      <CollationNames>default</CollationNames>
-      <CollationIds>100</CollationIds>
-      <CollationParentNames>pg_catalog</CollationParentNames>
-    </index>
-    <key id="299" parent="274" name="rooms_pkey">
-      <NameSurrogate>1</NameSurrogate>
-      <ObjectId>16616</ObjectId>
-      <Primary>1</Primary>
-      <StateNumber>845</StateNumber>
-      <UnderlyingIndexId>16615</UnderlyingIndexId>
-    </key>
-    <key id="300" parent="274" name="rooms_number_key">
-      <NameSurrogate>1</NameSurrogate>
-      <ObjectId>16618</ObjectId>
-      <StateNumber>845</StateNumber>
-      <UnderlyingIndexId>16617</UnderlyingIndexId>
-    </key>
   </database-model>
 </dataSource>
