@@ -1,0 +1,7 @@
+{
+  "detail": "Pokój o podanym numerze nie istnieje",
+  "instance": "/api/rooms/555",
+  "status": 404,
+  "title": "Nie znaleziono pokoju",
+  "timestamp": "2026-10-21T09:54:13.120659Z"
+}

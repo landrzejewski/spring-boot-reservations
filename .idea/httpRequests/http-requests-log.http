@@ -1,0 +1,33 @@
+GET http://localhost:8080/api/rooms/555
+Accept: application/json
+Authorization: Basic amFuOjEyMw==
+
+<> 2026-10-21T115413.404.json
+
+###
+GET http://localhost:8080/api/rooms/555
+Accept: application/json
+Authorization: Basic amFuOjEyMw==
+
+<> 2026-10-21T115352.404.json
+
+###
+GET http://localhost:8080/api/rooms/555
+Accept: application/json
+Authorization: Basic amFuOjEyMw==
+
+###
+GET http://localhost:8080/api/rooms/555
+Accept: application/json
+Authorization: Basic amFuOjEyMw==
+
+###
+GET http://localhost:8080/api/rooms/555
+Accept: application/json
+Authorization: Basic amFuOjEyMw==
+
+###
+GET http://localhost:8080/api/rooms/555
+Accept: application/json
+
+###

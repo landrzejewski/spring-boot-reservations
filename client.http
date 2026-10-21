@@ -103,6 +103,7 @@ Accept: application/json
 
 GET http://localhost:8080/api/rooms/555
 Accept: application/json
+Authorization: Basic amFuOjEyMw==
 
 ###
 
